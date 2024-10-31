@@ -18,6 +18,8 @@ export async function keyboard(this: Instance, text: string): Promise<void> {
 
     await keyboardAction(this, actions[i])
   }
+
+  await wait(this.config)
 }
 
 async function keyboardAction(
@@ -29,11 +31,12 @@ async function keyboardAction(
   // Release the key automatically if it was pressed before.
   if (system.keyboard.isKeyPressed(keyDef)) {
     await system.keyboard.keyup(instance, keyDef)
+    await wait(instance.config)
   }
 
   if (!releasePrevious) {
     for (let i = 1; i <= repeat; i++) {
-      await system.keyboard.keydown(instance, keyDef)
+      await Promise.resolve(system.keyboard.keydown(instance, keyDef))
 
       if (i < repeat) {
         await wait(instance.config)
@@ -42,13 +45,16 @@ async function keyboardAction(
 
     // Release the key only on the last iteration on `state.repeatKey`.
     if (releaseSelf) {
-      await system.keyboard.keyup(instance, keyDef)
+      await Promise.resolve(system.keyboard.keyup(instance, keyDef))
     }
   }
 }
 
 export async function releaseAllKeys(instance: Instance) {
-  for (const k of instance.system.keyboard.getPressedKeys()) {
+  const pressedKeys = instance.system.keyboard.getPressedKeys()
+
+  for (const k of pressedKeys) {
     await instance.system.keyboard.keyup(instance, k)
+    await wait(instance.config)
   }
 }
