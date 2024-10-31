@@ -1,6 +1,6 @@
 {
-  "name": "@testing-library/user-event",
-  "version": "0.0.0-semantically-released",
+  "name": "@vincentdm19/user-event",
+  "version": "0.0.1",
   "description": "Fire events the same way the user does",
   "keywords": [
     "react-testing-library",
@@ -8,7 +8,7 @@
     "react",
     "testing"
   ],
-  "author": "Giorgio Polvara <polvara@gmail.com>",
+  "author": "Vincent DI MARCO <vincent.dimarco1@gmail.com>",
   "license": "MIT",
   "engines": {
     "node": ">=12",
@@ -16,12 +16,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/testing-library/user-event"
+    "url": "https://github.com/vincentdm19/user-event"
   },
-  "bugs": {
-    "url": "https://github.com/testing-library/user-event/issues"
-  },
-  "homepage": "https://github.com/testing-library/user-event#readme",
   "files": [
     "dist"
   ],
@@ -30,8 +26,8 @@
     "lint": "kcd-scripts lint",
     "setup": "npm install && npm run validate -s",
     "setup:env": "node --experimental-import-meta-resolve scripts/setup.js",
-    "test": "kcd-scripts test",
-    "test:jest": "kcd-scripts test",
+    "test": "kcd-scripts test --all --passWithNoTests",
+    "test:jest": "kcd-scripts test --all --passWithNoTests",
     "test:toolbox": "NODE_OPTIONS='--experimental-vm-modules --experimental-modules --experimental-import-meta-resolve' node scripts/test.js",
     "test:debug": "kcd-scripts --inspect-brk test --runInBand",
     "test:update": "npm test -- --updateSnapshot --coverage",

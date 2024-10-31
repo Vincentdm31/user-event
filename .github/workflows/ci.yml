@@ -45,7 +45,7 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     if:
-      ${{ github.repository == 'testing-library/user-event' &&
+      ${{ github.repository == 'vincentdm19/user-event' &&
       contains('refs/heads/main,refs/heads/beta,refs/heads/alpha', github.ref)
       && github.event_name == 'push' }}
     steps:
